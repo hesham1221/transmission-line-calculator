@@ -8,32 +8,33 @@ function createTransmissionLineCalculator()
     titleXPos = (800 - titleWidth) / 2; % Center the title
     uicontrol('Style', 'text', 'Position', [titleXPos, 650, titleWidth, 30], 'String', titleStr, 'FontSize', 12, 'BackgroundColor', [0.95, 0.95, 0.95], 'FontWeight', 'bold');
 
-    % Dropdown for Conductor Type
-    uicontrol('Style', 'text', 'Position', [50, 600, 200, 20], 'String', 'Conductor Type:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    conductorTypeDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 600, 200, 20], 'String', {'Solid', 'Stranded'});
-
-    % Dropdown for Conductor Type
-    uicontrol('Style', 'text', 'Position', [50, 560, 200, 20], 'String', 'Stranded Type:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    strandedDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 560, 200, 20], 'String', {'3-Triangle', '4-Row' , '4-Square' ,'7-Hexagonal' , '9-Square' });
-
-    % Dropdown for Bundling
-    uicontrol('Style', 'text', 'Position', [50, 520, 200, 20], 'String', 'Bundling Option:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    bundlingDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 520, 200, 20], 'String', {'Non-Bundled', 'Bundled (<= 3)' , 'Bundled (> 3)'});
-
-    % Input for number of conductors in a bundle
-    uicontrol('Style', 'text', 'Position', [50, 480, 200, 20], 'String', 'Bundle Number:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    bundleNumberInput = uicontrol('Style', 'edit', 'Position', [260, 480, 200, 20]);
-
-    uicontrol('Style', 'text', 'Position', [50, 440, 200, 20], 'String', 'Space between Bundles (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    spaceBetweenBundlesInput = uicontrol('Style', 'edit', 'Position', [260, 440, 200, 20]);
-
-    % Input field for Conductor Radius
-    uicontrol('Style', 'text', 'Position', [50, 400, 200, 20], 'String', 'Conductor Radius (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    radiusInput = uicontrol('Style', 'edit', 'Position', [260, 400, 200, 20]);
 
     % Dropdown for Phase Configuration
-    uicontrol('Style', 'text', 'Position', [50, 360, 200, 20], 'String', 'Phase Configuration:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    phaseConfigDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 360, 200, 20], 'String', {'Single-Phase','Single-Phase Two-Wire' ,'Three-Phase'});
+    uicontrol('Style', 'text', 'Position', [50, 600, 200, 20], 'String', 'Phase Configuration:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    phaseConfigDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 600, 200, 20], 'String', {'Single-Phase','Single-Phase Two-Wire' ,'Three-Phase'});
+
+    % Dropdown for Conductor Type
+    uicontrol('Style', 'text', 'Position', [50, 560, 200, 20], 'String', 'Conductor Type:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    conductorTypeDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 560, 200, 20], 'String', {'Solid', 'Stranded'});
+
+    % Dropdown for Conductor Type
+    uicontrol('Style', 'text', 'Position', [50, 520, 200, 20], 'String', 'Stranded Type:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    strandedDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 520, 200, 20], 'String', {'3-Triangle', '4-Row' , '4-Square' ,'7-Hexagonal' , '9-Square' });
+
+    % Dropdown for Bundling
+    uicontrol('Style', 'text', 'Position', [50, 480, 200, 20], 'String', 'Bundling Option:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    bundlingDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 480, 200, 20], 'String', {'Non-Bundled', 'Bundled (<= 3)' , 'Bundled (> 3)'});
+
+    % Input for number of conductors in a bundle
+    uicontrol('Style', 'text', 'Position', [50, 440, 200, 20], 'String', 'Bundle Number:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    bundleNumberInput = uicontrol('Style', 'edit', 'Position', [260, 440, 200, 20]);
+
+    uicontrol('Style', 'text', 'Position', [50, 400, 200, 20], 'String', 'Space between Bundles (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    spaceBetweenBundlesInput = uicontrol('Style', 'edit', 'Position', [260, 400, 200, 20]);
+
+    % Input field for Conductor Radius
+    uicontrol('Style', 'text', 'Position', [50, 360, 200, 20], 'String', 'Conductor Radius (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    radiusInput = uicontrol('Style', 'edit', 'Position', [260, 360, 200, 20]);
 
     % Input field for General Spacing
     uicontrol('Style', 'text', 'Position', [50, 320, 200, 20], 'String', 'General Spacing (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
