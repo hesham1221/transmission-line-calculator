@@ -11,7 +11,7 @@ function createTransmissionLineCalculator()
 
     % Dropdown for Phase Configuration
     uicontrol('Style', 'text', 'Position', [50, 600, 200, 20], 'String', 'Phase Configuration:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    phaseConfigDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 600, 200, 20], 'String', {'Single-Phase','Single-Phase Two-Wire' ,'Three-Phase'});
+    phaseConfigDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 600, 200, 20], 'String', {'Single-Phase','Single-Phase Two-Wire' ,'Three-Phase' , 'Three-Phase Double-circuit'});
 
     % Dropdown for Conductor Type
     uicontrol('Style', 'text', 'Position', [50, 560, 200, 20], 'String', 'Conductor Type:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
@@ -41,13 +41,13 @@ function createTransmissionLineCalculator()
     spacingInput = uicontrol('Style', 'edit', 'Position', [260, 320, 200, 20]);
 
    % Function to create additional input fields for three-phase configuration
-    uicontrol('Style', 'text', 'Position', [50, 280, 200, 20], 'String', 'Spacing 1-2 (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    uicontrol('Style', 'text', 'Position', [50, 280, 200, 20], 'String', 'Spacing 1-2 or X (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
     spacing12Input = uicontrol('Style', 'edit', 'Position', [260, 280, 200, 20]);
 
-    uicontrol('Style', 'text', 'Position', [50, 240, 200, 20], 'String', 'Spacing 2-3 (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    uicontrol('Style', 'text', 'Position', [50, 240, 200, 20], 'String', 'Spacing 2-3 or Y (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
     spacing23Input = uicontrol('Style', 'edit', 'Position', [260, 240, 200, 20]);
 
-    uicontrol('Style', 'text', 'Position', [50, 200, 200, 20], 'String', 'Spacing 1-3 (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
+    uicontrol('Style', 'text', 'Position', [50, 200, 200, 20], 'String', 'Spacing 1-3 or Z (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
     spacing31Input = uicontrol('Style', 'edit', 'Position', [260, 200, 200, 20]);
 
     % Button for calculation, moved down for better spacing

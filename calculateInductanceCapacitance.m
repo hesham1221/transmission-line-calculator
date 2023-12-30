@@ -40,6 +40,35 @@ function [L, C] = calculateInductanceCapacitance(conductorType, bundling, bundle
         % Two-Wire Calculations
         L = (mu0 / pi) * log(spacing / effectiveRadiusForInductance);
         C = (2 * pi * epsilon0) / log(spacing / effectiveRadiusForCapacitance);
+    elseif strcmp(phaseConfig, 'Three-Phase Double-circuit')
+        X = spacing12;
+        Y = spacing23;
+        Z = spacing31;
+        D_ab = Y;
+        D_Ab = (Z ^ 2 + Y ^ 2) ^ (1/2);
+        D_aB = (X ^ 2 + Y ^ 2) ^ (1/2);
+        D_AB = Y;
+        D_bc = Y;
+        D_Bc = (X ^ 2 + Y ^ 2) ^ (1/2);
+        D_bC = (X ^ 2 + Y ^ 2) ^ (1/2);
+        D_BC = Y;
+        D_ca = 2 * Y;
+        D_CA = ((2 * Y) ^ 2 + X ^ 2) ^ (1/2);
+        D_cA = ((2 * Y) ^ 2 + X ^ 2) ^ (1/2);
+        D_Ca = 2 * Y;
+        D_aA = X;
+        D_bB = Z;
+        D_cc = X;
+        DA = (D_ab * D_Ab * D_aB * D_AB) ^ (1/4);
+        DB = (D_bc * D_Bc * D_bC * D_BC) ^ (1/4);
+        DC = (D_ca * D_Ca * D_cA * D_CA) ^ (1/4);
+        Dm = (DA * DB * DC) ^ (1/3);
+        Ds1 = (effectiveRadiusForInductance * effectiveRadiusForInductance * D_aA * D_aA) ^ (1/4);
+        Ds2 = (effectiveRadiusForInductance * effectiveRadiusForInductance * D_bB * D_bB) ^ (1/4);
+        Ds3 = (effectiveRadiusForInductance * effectiveRadiusForInductance * D_cC * D_cC) ^ (1/4);
+        Ds = (Ds1 * Ds2 * Ds3) ^ (1/3);
+        L = (mu0 / (2 * pi)) * (log(Dm / Ds));
+        C = (2 * pi * epsilon0) / log(Dm / Ds);
     end
 
     % Implementing a basic model; refine as needed for more accuracy
