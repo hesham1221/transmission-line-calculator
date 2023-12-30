@@ -1,13 +1,10 @@
-function calculateAndDisplayResults(conductorTypeDropdown, bundlingDropdown, bundleNumberInput, radiusInput, spacingInput, phaseConfigDropdown, spacing12Input, spacing23Input, spacing31Input, inductanceLabel, capacitanceLabel, strandedDropdown, spaceBetweenBundlesInput)
+function calculateAndDisplayResults(bundlingDropdown, bundleNumberInput, radiusInput, spacingInput, phaseConfigDropdown, spacing12Input, spacing23Input, spacing31Input, inductanceLabel, capacitanceLabel, strandedDropdown, spaceBetweenBundlesInput)
     % Compatibility check for MATLAB version
-    if isobject(conductorTypeDropdown) % For newer MATLAB versions (R2014b and later)
-        conductorType = conductorTypeDropdown.String{conductorTypeDropdown.Value};
+    if isobject(bundlingDropdown) % For newer MATLAB versions (R2014b and later)
         bundling = bundlingDropdown.String{bundlingDropdown.Value};
         phaseConfig = phaseConfigDropdown.String{phaseConfigDropdown.Value};
         strandedType = strandedDropdown.String{strandedDropdown.Value};
     else % For older MATLAB versions
-        conductorType = get(conductorTypeDropdown, 'String');
-        conductorType = conductorType{get(conductorTypeDropdown, 'Value')};
         bundling = get(bundlingDropdown, 'String');
         bundling = bundling{get(bundlingDropdown, 'Value')};
         phaseConfig = get(phaseConfigDropdown, 'String');
@@ -21,9 +18,11 @@ function calculateAndDisplayResults(conductorTypeDropdown, bundlingDropdown, bun
     spacing23 = str2double(get(spacing23Input, 'String'));
     spacing31 = str2double(get(spacing31Input, 'String'));
 
-    if (STRCMP(strandedType, 'solid'))
+    if (strcmp(strandedType, 'solid'))
         conductorType = 'solid';
         strandedType = '3-Triangle';
+    else
+        conductorType = 'Stranded';
     end
 
     [strandedNum, strandedFactor] = getStrandedNumAndFactor(strandedType);

@@ -28,7 +28,7 @@ function createTransmissionLineCalculator()
 
     % Dropdown for Conductor Type
     uicontrol('Style', 'text', 'Position', [50, 560, 200, 20], 'String', 'Stranded Type:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    strandedDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 560, 200, 20], 'String', {'Solid','3-Triangle', '4-Row', '4-Square', '7-Hexagonal', '9-Square'}, 'Callback', @(src, event) updateStrandedImage());
+    strandedDropdown = uicontrol('Style', 'popupmenu', 'Position', [260, 560, 200, 20], 'String', {'Solid', '3-Triangle', '4-Row', '4-Square', '7-Hexagonal', '9-Square'}, 'Callback', @(src, event) updateStrandedImage());
 
     % Dropdown for Bundling
     uicontrol('Style', 'text', 'Position', [50, 520, 200, 20], 'String', 'Bundling Option:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
@@ -70,11 +70,15 @@ function createTransmissionLineCalculator()
     uicontrol('Style', 'text', 'String', sprintf(creditText), 'Position', [630, 20, 350, 80], 'HorizontalAlignment', 'right', 'BackgroundColor', [0.95, 0.95, 0.95], 'FontSize', 12);
 
     % Set callback for the calculate button
-    set(calculateButton, 'Callback', @(src, event) calculateAndDisplayResults(conductorTypeDropdown, bundlingDropdown, bundleNumberInput, radiusInput, spacingInput, phaseConfigDropdown, spacing12Input, spacing23Input, spacing31Input, inductanceLabel, capacitanceLabel, strandedDropdown, spaceBetweenBundlesInput));
+    set(calculateButton, 'Callback', @(src, event) calculateAndDisplayResults(bundlingDropdown, bundleNumberInput, radiusInput, spacingInput, phaseConfigDropdown, spacing12Input, spacing23Input, spacing31Input, inductanceLabel, capacitanceLabel, strandedDropdown, spaceBetweenBundlesInput));
 
     updateImageDisplay();
     updateStrandedImage();
     updateBundlingImage();
+
+    function imagePath = getImagePath(imagePath)
+        imagePath = strcat('images/', imagePath);
+    end
 
     function updateImageDisplay()
         phaseConfig = get(phaseConfigDropdown, 'String');
@@ -92,6 +96,8 @@ function createTransmissionLineCalculator()
                 imagePath = 'three-phase-double-circuit.jpeg';
         end
 
+        imagePath = getImagePath(imagePath);
+
         img = imread(imagePath);
         imshow(img, 'Parent', imageAxes);
         axis(imageAxes, 'off');
@@ -102,6 +108,7 @@ function createTransmissionLineCalculator()
         strandedType = get(strandedDropdown, 'String');
         strandedType = strandedType{get(strandedDropdown, 'Value')};
         imagePath = strcat(num2str(strandedType), '.jpeg');
+        imagePath = getImagePath(imagePath);
         img = imread(imagePath);
         imshow(img, 'Parent', strandedImageAxes);
         axis(strandedImageAxes, 'off');
@@ -130,6 +137,7 @@ function createTransmissionLineCalculator()
 
         end
 
+        imagePath = getImagePath(imagePath);
         img = imread(imagePath);
         imshow(img, 'Parent', bundlingImageAxes);
         axis(bundlingImageAxes, 'off');
