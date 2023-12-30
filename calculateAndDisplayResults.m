@@ -18,8 +18,8 @@ function calculateAndDisplayResults(bundlingDropdown, bundleNumberInput, radiusI
     spacing23 = str2double(get(spacing23Input, 'String'));
     spacing31 = str2double(get(spacing31Input, 'String'));
 
-    if (strcmp(strandedType, 'solid'))
-        conductorType = 'solid';
+    if (strcmp(strandedType, 'Solid'))
+        conductorType = 'Solid';
         strandedType = '3-Triangle';
     else
         conductorType = 'Stranded';

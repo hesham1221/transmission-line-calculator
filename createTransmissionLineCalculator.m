@@ -36,7 +36,7 @@ function createTransmissionLineCalculator()
 
     % Input for number of conductors in a bundle
     uicontrol('Style', 'text', 'Position', [50, 480, 200, 20], 'String', 'Bundle Number:', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
-    bundleNumberInput = uicontrol('Style', 'edit', 'Position', [260, 480, 200, 20]);
+    bundleNumberInput = uicontrol('Style', 'edit', 'Position', [260, 480, 200, 20] , 'Callback', @(src, event) updateBundlingImage());
 
     uicontrol('Style', 'text', 'Position', [50, 440, 200, 20], 'String', 'Space between Bundles (m):', 'HorizontalAlignment', 'left', 'BackgroundColor', [0.95, 0.95, 0.95]);
     spaceBetweenBundlesInput = uicontrol('Style', 'edit', 'Position', [260, 440, 200, 20]);
