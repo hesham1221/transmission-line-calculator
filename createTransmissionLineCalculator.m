@@ -83,7 +83,6 @@ function createTransmissionLineCalculator()
     function updateImageDisplay()
         phaseConfig = get(phaseConfigDropdown, 'String');
         phaseConfig = phaseConfig{get(phaseConfigDropdown, 'Value')};
-        disp(phaseConfig)
 
         switch phaseConfig
             case 'Single-Phase'
@@ -104,7 +103,6 @@ function createTransmissionLineCalculator()
     end
 
     function updateStrandedImage()
-        disp('text')
         strandedType = get(strandedDropdown, 'String');
         strandedType = strandedType{get(strandedDropdown, 'Value')};
         imagePath = strcat(num2str(strandedType), '.jpeg');
